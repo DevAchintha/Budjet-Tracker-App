@@ -1,5 +1,4 @@
-
-# 🇱🇰 LankaBudget Pro - Publishing Guide
+# 🎓 UniBudget - Publishing Guide
 
 This app is ready to be published to the web! Follow these steps to take it live.
 

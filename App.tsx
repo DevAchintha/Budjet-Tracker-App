@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import BalanceBar from './components/BalanceBar';
 import AddExpenseForm from './components/AddExpenseForm';
@@ -12,38 +11,38 @@ type ViewType = 'tracker' | 'stats' | 'notes' | 'themes';
 
 const App: React.FC = () => {
   const [expenses, setExpenses] = useState<Expense[]>(() => {
-    const saved = localStorage.getItem('lanka_expenses');
+    const saved = localStorage.getItem('uni_expenses');
     return saved ? JSON.parse(saved) : [];
   });
   const [notes, setNotes] = useState<Note[]>(() => {
-    const saved = localStorage.getItem('lanka_notes');
+    const saved = localStorage.getItem('uni_notes');
     return saved ? JSON.parse(saved) : [];
   });
   const [theme, setTheme] = useState<ThemeColor>(() => {
-    const saved = localStorage.getItem('lanka_theme');
+    const saved = localStorage.getItem('uni_theme');
     return (saved as ThemeColor) || 'blue';
   });
   const [weeklyLimit, setWeeklyLimit] = useState<number>(() => {
-    const saved = localStorage.getItem('lanka_weekly_limit');
+    const saved = localStorage.getItem('uni_weekly_limit');
     return saved ? parseInt(saved, 10) : WEEKLY_LIMIT_LKR;
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeView, setActiveView] = useState<ViewType>('tracker');
 
   useEffect(() => {
-    localStorage.setItem('lanka_expenses', JSON.stringify(expenses));
+    localStorage.setItem('uni_expenses', JSON.stringify(expenses));
   }, [expenses]);
 
   useEffect(() => {
-    localStorage.setItem('lanka_notes', JSON.stringify(notes));
+    localStorage.setItem('uni_notes', JSON.stringify(notes));
   }, [notes]);
 
   useEffect(() => {
-    localStorage.setItem('lanka_theme', theme);
+    localStorage.setItem('uni_theme', theme);
   }, [theme]);
 
   useEffect(() => {
-    localStorage.setItem('lanka_weekly_limit', weeklyLimit.toString());
+    localStorage.setItem('uni_weekly_limit', weeklyLimit.toString());
   }, [weeklyLimit]);
 
   const totalSpent = useMemo(() => {
@@ -171,7 +170,7 @@ const App: React.FC = () => {
       <header className="p-6 bg-white border-b border-slate-100 flex justify-between items-center sticky top-0 z-40">
         <div>
           <h1 className="text-xl font-bold text-slate-900">
-            {activeView === 'tracker' ? 'LankaBudget Pro' : 
+            {activeView === 'tracker' ? 'UniBudget' : 
              activeView === 'stats' ? 'Spending Stats' : 
              activeView === 'notes' ? 'My Notepad' : 'App Themes'}
           </h1>
@@ -182,7 +181,7 @@ const App: React.FC = () => {
           </p>
         </div>
         <div className={`w-10 h-10 rounded-full border flex items-center justify-center font-bold ${currentTheme.bg} ${currentTheme.text} border-current/20`}>
-          SL
+          UB
         </div>
       </header>
 
